@@ -9,9 +9,9 @@
 未提供功能
 
 - 动态组件 **dynamic**
-- model 中定义 effects ，以数组格式配置取消了 watcher type，详情请见 [核心概念/model](http://doc-movie.sankuai.com/product/tangdao/model) 文档
+- model 中定义 effects ，以数组格式配置取消了 watcher type，详情请见 [核心概念/model](https://github.com/MaoYanTech/tangdao/wiki/model) 文档
 
-- 创建应用时的可配属性，详情请见 [核心概念/初始化配置](http://doc-movie.sankuai.com/product/tangdao/initConfig) 文档
+- 创建应用时的可配属性，详情请见 [核心概念/初始化配置](https://github.com/MaoYanTech/tangdao/wiki/initialization-options) 文档
 
 ```
 {
@@ -30,7 +30,7 @@
     import { loading } from '@maoyan/tangdao';
 ```
 
-loading 的可配参数，详情请见 [loading 插件](http://doc-movie.sankuai.com/product/tangdao/loading)
+loading 的可配参数，详情请见 [loading 插件](https://github.com/MaoYanTech/tangdao/wiki/loading)
 
 ---
 
@@ -87,13 +87,13 @@ app.start('#app');
 
  然后将从 dva 中引用的 api 全部改为唐刀引入。
 
-至此，你已经完成了唐刀的初步对接，接入过程如果报错，请移步 [迁移问题总结](http://doc-movie.sankuai.com/product/tangdao/summary)
+至此，你已经完成了唐刀的初步对接，接入过程如果报错，请移步 [迁移问题总结](https://github.com/MaoYanTech/tangdao/wiki/problem-summary)
 
 ---
 
 **action 相关**
 
-因为 Dva 不支持 action 管理，而唐刀支持 action 管理，这一部分根据项目规范并参考 [核心概念/action 管理](http://doc-movie.sankuai.com/product/tangdao/action-manage) 自行改造
+因为 Dva 不支持 action 管理，而唐刀支持 action 管理，这一部分根据项目规范并参考 [核心概念/action 管理](https://github.com/MaoYanTech/tangdao/wiki/manage-action) 自行改造
 
 ---
 

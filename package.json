@@ -2,7 +2,10 @@
   "name": "@maoyan/tangdao",
   "version": "1.0.3",
   "main": "dist/tangdao.min.js",
-  "repository": "https://github.com/MaoYanTech/tangdao",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaoYanTech/tangdao.git"
+  },
   "author": "myfe <fe@maoyan.com>",
   "maintainers": [
     "wangkemiao <wangkemiao@maoyan.com>",
@@ -51,5 +54,16 @@
   "peerDependencies": {
     "react": "^15.5.4 || ^16.0.0",
     "react-dom": "^15.5.4 || ^16.0.0"
-  }
+  },
+  "description": "唐刀是一款基于 redux + redux-saga 以 model 为核心的数据流管理工具，它将 store 和 saga 统一为 model 的概念，写在一个 js 文件中，以对象配置的概念维护 state、 reducers、effects 等。",
+  "bugs": {
+    "url": "https://github.com/MaoYanTech/tangdao/issues"
+  },
+  "homepage": "https://github.com/MaoYanTech/tangdao#readme",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
+  },
+  "keywords": []
 }

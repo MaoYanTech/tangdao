@@ -22,7 +22,7 @@ npm install --save @maoyan/tangdao
 
 #### 第一步：创建实例
 
-``tangdao(opts)`` 可以用来配置应用的 reducer、saga、state 等一系列 redux + redux-saga 配置，具体细节可看
+``tangdao(opts)`` 可以用来配置应用的 reducer、saga、state 等一系列 redux + redux-saga 配置，具体细节可看[初始化配置](https://github.com/MaoYanTech/tangdao/wiki/initialization-options)
 
 ```javascript
 // /index.js

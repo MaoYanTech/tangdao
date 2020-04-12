@@ -108,7 +108,7 @@ const td = tangdao({
 });
 ```
 
-详情请看 [核心概念/reducer 的自动创建](http://doc-movie.sankuai.com/product/tangdao/reducer-create) 一节
+详情请看 [核心概念/reducer 的自动创建](https://github.com/MaoYanTech/tangdao/wiki/update-state) 一节
 
 ### wrapReducer
 

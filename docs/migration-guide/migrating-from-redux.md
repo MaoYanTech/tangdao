@@ -48,7 +48,7 @@ const store = td.getStore();
 td.start('#app');
 ```
 
-至此，你已经完成了唐刀的初步迁移，接入过程如果报错，请移步 [迁移问题总结](http://doc-movie.sankuai.com/product/tangdao/summary)
+至此，你已经完成了唐刀的初步迁移，接入过程如果报错，请移步 [迁移问题总结](https://github.com/MaoYanTech/tangdao/wiki/problem-summary)
 
 后期可以针对具体的模块进行样板文件的改造
 
@@ -56,7 +56,7 @@ td.start('#app');
 
 #### model 的创建
 
-将项目中的模块改造成 model 样板文件, 简要介绍下 model 文件，详情可见 [核心概念/model](http://doc-movie.sankuai.com/product/tangdao/model)
+将项目中的模块改造成 model 样板文件, 简要介绍下 model 文件，详情可见 [核心概念/model](https://github.com/MaoYanTech/tangdao/wiki/model)
 
 ```javascript
 const model = {
