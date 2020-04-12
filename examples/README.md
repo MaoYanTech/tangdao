@@ -7,11 +7,11 @@
 安装依赖：
 
 ```
-mnpm install
+npm install
 ```
 
 启动项目：
 
 ```
-mnmp run todo
+npm run todo
 ```
