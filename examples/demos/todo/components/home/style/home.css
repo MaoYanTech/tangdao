@@ -1,0 +1,36 @@
+.panle {
+  position: relative;
+  margin-top: 10px;
+  height: calc(100% - 43px);
+}
+.diray {
+  width: 100%;
+  height: calc(100% - 72px);
+  border: none;
+  outline: none;
+  padding: 6px;
+  line-height: 1.25;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: #F5F5F5;
+}
+.save-btn {
+  margin-top: 10px;
+  text-align: right;
+}
+.save-btn span {
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 12px;
+  color: #fff;
+  border-radius: 8px;
+  background: #38f;
+  cursor: pointer;
+}
+.loading-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}

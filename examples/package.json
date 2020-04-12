@@ -1,0 +1,35 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "todo": "webpack-dev-server --config ./configs/webpack_config.js --color"
+  },
+  "dependencies": {
+    "@maoyan/tangdao": "^1.0.2",
+    "antd": "^3.22.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "redux-form": "^8.2.5",
+    "redux-persist": "^5.10.0",
+    "redux-undo": "^0.6.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "react-hot-loader": "^4.12.11",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
+  }
+}

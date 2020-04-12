@@ -1,0 +1,14 @@
+.panel {
+  position: relative;
+  height: calc(100% - 43px);
+  margin: 10px 0;
+  overflow-x: hidden;
+  overflow-y: scroll; 
+}
+.loading-wrap {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}

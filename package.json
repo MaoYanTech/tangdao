@@ -1,0 +1,55 @@
+{
+  "name": "@maoyan/tangdao",
+  "version": "1.0.3",
+  "main": "dist/tangdao.min.js",
+  "repository": "https://github.com/MaoYanTech/tangdao",
+  "author": "myfe <fe@maoyan.com>",
+  "maintainers": [
+    "wangkemiao <wangkemiao@maoyan.com>",
+    "haojie04 <haojie04@maoyan.com>",
+    "wenyunyan <wenyunyan@maoyan.com>",
+    "pangzhihong <pangzhihong@maoyan.com>",
+    "caoxueying02 <caoxueying02@maoyan.com>"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "npm i && rollup --watch  --c ./configs/rollup_config.js",
+    "build": "npm run build:un-uglify & npm run build:uglify",
+    "build:un-uglify": "NODE_ENV=development rollup --c ./configs/rollup_config.js",
+    "build:uglify": "NODE_ENV=production rollup --c ./configs/rollup_config.js",
+    "autoPublish": "./scripts/publish.sh",
+    "test": "jest --coverage"
+  },
+  "dependencies": {
+    "connected-react-router": "^4.5.0",
+    "histore": "^1.0.0",
+    "invariant": "^2.2.4",
+    "isomorphic-fetch": "^2.2.1",
+    "react-redux": "^4.4.8 || ^5.0.7",
+    "react-router-dom": "^4.3.0",
+    "redux": "^3.6.0 || ^4.0.0",
+    "redux-saga": "^1.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.2",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-cleanup": "^3.1.1",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.3"
+  },
+  "peerDependencies": {
+    "react": "^15.5.4 || ^16.0.0",
+    "react-dom": "^15.5.4 || ^16.0.0"
+  }
+}
