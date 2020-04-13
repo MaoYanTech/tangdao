@@ -2,8 +2,6 @@
 
 唐刀是一款基于 redux + redux-saga 以 model 为核心的数据流管理工具，它将 store 和 saga 统一为 model 的概念，写在一个 js 文件中，以对象配置的概念维护 state、 reducers、effects 等。
 
-文档：https://github.com/MaoYanTech/tangdao/wiki
-
 另外唐刀将 redux 相关常用的库整合在一起方便取用，具体如下：
 
 - react-router-dom

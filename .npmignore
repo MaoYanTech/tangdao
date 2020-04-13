@@ -5,3 +5,6 @@ examples
 node_modules
 src
 test
+dist/tangdao.js
+dist/tangdao.js.map
+dist/tangdao.min.js.map
