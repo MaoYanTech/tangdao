@@ -8,11 +8,26 @@
   },
   "author": "myfe <fe@maoyan.com>",
   "maintainers": [
-    "wangkemiao <wangkemiao@maoyan.com>",
-    "haojie04 <haojie04@maoyan.com>",
-    "wenyunyan <wenyunyan@maoyan.com>",
-    "pangzhihong <pangzhihong@maoyan.com>",
-    "caoxueying02 <caoxueying02@maoyan.com>"
+    {
+      "name": "wangkemiao",
+      "email": "wangkemiao@maoyan.com"
+    }, 
+    {
+      "name": "haojie",
+      "email": "haojie04@maoyan.com"
+    },
+    {
+      "name": "wenyunyan",
+      "email": "wenyunyan@maoyan.com"
+    },
+    {
+      "name": "pangzhihong",
+      "email": "pangzhihong@maoyan.com"
+    },
+    {
+      "name": "caoxueying",
+      "email": "caoxueying02@maoyan.com"
+    }
   ],
   "license": "MIT",
   "scripts": {
