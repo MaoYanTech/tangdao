@@ -1,3 +1,14 @@
+- [介绍](https://maoyantech.github.io/tangdao/introduction)
+- 核心概念
+  - 初始化配置
+  - [model](https://maoyantech.github.io/tangdao/core-concepts/model)
+  - [action 管理](https://maoyantech.github.io/tangdao/core-concepts/action-manage)
+  - [自动创建 reducer](https://maoyantech.github.io/tangdao/core-concepts/update-state)
+  - [插件机制](https://maoyantech.github.io/tangdao/core-concepts/create-plugin)
+- [插件列表](https://maoyantech.github.io/tangdao/plugins)
+- [API 列表](https://maoyantech.github.io/tangdao/api-reference)
+- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide)
+
 ## 初始化
 
 redux 初始化涉及的概念较多，比如 `compose` 、`thunk` 等等，同时 `reducer`、`initialState`、`middleware` 三个重要的概念被拆分函数方式调用。这种初始化方式非常函数式，不容易理解。所以唐刀采取了对象配置的方式将redux 初始化配置化，方便理解。

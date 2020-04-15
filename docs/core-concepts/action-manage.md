@@ -1,3 +1,14 @@
+* [介绍](https://maoyantech.github.io/tangdao/introduction)
+- 核心概念
+  - [初始化配置](https://maoyantech.github.io/tangdao/core-concepts/initialization-options)
+  - [model](https://maoyantech.github.io/tangdao/core-concepts/model)
+  - action 管理
+  - [自动创建 reducer](https://maoyantech.github.io/tangdao/core-concepts/update-state)
+  - [插件机制](https://maoyantech.github.io/tangdao/core-concepts/create-plugin)
+- [插件列表](https://maoyantech.github.io/tangdao/plugins)
+- [API 列表](https://maoyantech.github.io/tangdao/api-reference)
+- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide)
+
 ## action 分类
 
 在唐刀中 action  被划分为两类：reducer action 和 effect action。
