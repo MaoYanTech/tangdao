@@ -1,7 +1,7 @@
-- [介绍](https://maoyantech.github.io/tangdao/introduction)
-- [核心概念](https://maoyantech.github.io/core-concepts)
-- [插件列表](https://maoyantech.github.io/tangdao/plugins)
-- [API 列表](https://maoyantech.github.io/tangdao/api-reference)
+- [介绍](https://maoyantech.github.io/tangdao/introduction/index)
+- [核心概念](https://maoyantech.github.io/tangdao/core-concepts/index)
+- [插件列表](https://maoyantech.github.io/tangdao/plugins/index)
+- [API 列表](https://maoyantech.github.io/tangdao/api-reference/index)
 - 迁移指南
   - [从 dva 迁移](https://maoyantech.github.io/tangdao/migration-guide/migrating-from-dva)
   - 从原生 redux 迁移
@@ -57,7 +57,7 @@ const store = td.getStore();
 td.start('#app');
 ```
 
-至此，你已经完成了唐刀的初步迁移，接入过程如果报错，请移步 [迁移问题总结](https://github.com/MaoYanTech/tangdao/wiki/problem-summary)
+至此，你已经完成了唐刀的初步迁移，接入过程如果报错，请移步 [迁移问题总结](https://maoyantech.github.io/tangdao/migration-guide/problem-summary)
 
 后期可以针对具体的模块进行样板文件的改造
 
@@ -65,7 +65,7 @@ td.start('#app');
 
 #### model 的创建
 
-将项目中的模块改造成 model 样板文件, 简要介绍下 model 文件，详情可见 [核心概念/model](https://github.com/MaoYanTech/tangdao/wiki/model)
+将项目中的模块改造成 model 样板文件, 简要介绍下 model 文件，详情可见 [核心概念/model](https://maoyantech.github.io/tangdao/core-concepts/model)
 
 ```javascript
 const model = {

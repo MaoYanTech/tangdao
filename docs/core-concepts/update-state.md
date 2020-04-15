@@ -1,13 +1,13 @@
-- [介绍](https://maoyantech.github.io/tangdao/introduction)
+- [介绍](https://maoyantech.github.io/tangdao/introduction/index)
 - 核心概念
   - [初始化配置](https://maoyantech.github.io/tangdao/core-concepts/initialization-options)
   - [model](https://maoyantech.github.io/tangdao/core-concepts/model)
   - [action 管理](https://maoyantech.github.io/tangdao/core-concepts/action-manage)
   - 自动创建 reducer
   - [插件机制](https://maoyantech.github.io/tangdao/core-concepts/create-plugin)
-- [插件列表](https://maoyantech.github.io/tangdao/plugins)
-- [API 列表](https://maoyantech.github.io/tangdao/api-reference)
-- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide)
+- [插件列表](https://maoyantech.github.io/tangdao/plugins/index)
+- [API 列表](https://maoyantech.github.io/tangdao/api-reference/index)
+- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide/index)
 
 在 redux 应用中，reducer 负责 state 的更新，并不承担数据处理的任务。针对不同的 action， reducer 内部都有独立的处理的逻辑。大部分情况下，只是根据 action 更新 store state 上的属性, 并不进行数据处理。因此，对于这种情况可以使用统一的工厂函数来进行替代。比如：
 

@@ -1,7 +1,7 @@
-- [介绍](https://maoyantech.github.io/tangdao/introduction)
-- [核心概念](https://maoyantech.github.io/core-concepts)
-- [插件列表](https://maoyantech.github.io/tangdao/plugins)
-- [API 列表](https://maoyantech.github.io/tangdao/api-reference)
+- [介绍](https://maoyantech.github.io/tangdao/introduction/index)
+- [核心概念](https://maoyantech.github.io/core-concepts/index)
+- [插件列表](https://maoyantech.github.io/tangdao/plugins/index)
+- [API 列表](https://maoyantech.github.io/tangdao/api-reference/index)
 - 迁移指南
   - [从 dva 迁移](https://maoyantech.github.io/tangdao/migration-guide/migrating-from-dva)
   - [从原生 redux 迁移](https://maoyantech.github.io/tangdao/migration-guide/migrating-from-redux)

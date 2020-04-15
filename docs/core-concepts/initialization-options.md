@@ -1,13 +1,13 @@
-- [介绍](https://maoyantech.github.io/tangdao/introduction)
+- [介绍](https://maoyantech.github.io/tangdao/introduction/index)
 - 核心概念
   - 初始化配置
   - [model](https://maoyantech.github.io/tangdao/core-concepts/model)
   - [action 管理](https://maoyantech.github.io/tangdao/core-concepts/action-manage)
   - [自动创建 reducer](https://maoyantech.github.io/tangdao/core-concepts/update-state)
   - [插件机制](https://maoyantech.github.io/tangdao/core-concepts/create-plugin)
-- [插件列表](https://maoyantech.github.io/tangdao/plugins)
-- [API 列表](https://maoyantech.github.io/tangdao/api-reference)
-- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide)
+- [插件列表](https://maoyantech.github.io/tangdao/plugins/index)
+- [API 列表](https://maoyantech.github.io/tangdao/api-reference/index)
+- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide/index)
 
 ## 初始化
 
@@ -119,7 +119,7 @@ const td = tangdao({
 });
 ```
 
-详情请看 [核心概念/reducer 的自动创建](https://github.com/MaoYanTech/tangdao/wiki/update-state) 一节
+详情请看 [核心概念/自动创建 reducer](https://maoyantech.github.io/tangdao/core-concepts/update-state) 一节
 
 ### wrapReducer
 

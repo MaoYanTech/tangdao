@@ -2,10 +2,10 @@
   - 快速开始
   - [默认输出](https://maoyantech.github.io/tangdao/introduction/default-output)
   - [为什么选择唐刀](https://maoyantech.github.io/tangdao/introduction/why)
-- [核心概念](https://maoyantech.github.io/tangdao/core-concepts)
-- [插件列表](https://maoyantech.github.io/tangdao/plugins)
-- [API 列表](https://maoyantech.github.io/tangdao/api-reference)
-- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide)
+- [核心概念](https://maoyantech.github.io/tangdao/core-concepts/index)
+- [插件列表](https://maoyantech.github.io/tangdao/plugins/index)
+- [API 列表](https://maoyantech.github.io/tangdao/api-reference/index)
+- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide/index)
 
 ### 介绍
 
@@ -31,7 +31,7 @@ npm install --save @maoyan/tangdao
 
 #### 第一步：创建实例
 
-``tangdao(opts)`` 可以用来配置应用的 reducer、saga、state 等一系列 redux + redux-saga 配置，具体细节可看[初始化配置](https://github.com/MaoYanTech/tangdao/wiki/initialization-options)
+``tangdao(opts)`` 可以用来配置应用的 reducer、saga、state 等一系列 redux + redux-saga 配置，具体细节可看[初始化配置](https://maoyantech.github.io/tangdao/core-concepts/initialization-options)
 
 ```javascript
 // /index.js

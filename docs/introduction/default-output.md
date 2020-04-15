@@ -2,10 +2,10 @@
   - [快速开始](https://maoyantech.github.io/tangdao/introduction/getting-started)
   - 默认输出
   - [为什么选择唐刀](https://maoyantech.github.io/tangdao/introduction/why)
-- [核心概念](https://maoyantech.github.io/tangdao/core-concepts)
-- [插件列表](https://maoyantech.github.io/tangdao/plugins)
-- [API 列表](https://maoyantech.github.io/tangdao/api-reference)
-- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide)
+- [核心概念](https://maoyantech.github.io/tangdao/core-concepts/index)
+- [插件列表](https://maoyantech.github.io/tangdao/plugins/index)
+- [API 列表](https://maoyantech.github.io/tangdao/api-reference/index)
+- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide/index)
 
 ## react-redux
 

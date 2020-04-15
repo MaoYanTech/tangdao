@@ -1,12 +1,12 @@
-- [介绍](https://maoyantech.github.io/tangdao/introduction)
-- [核心概念](https://maoyantech.github.io/core-concepts)
-- [插件列表](https://maoyantech.github.io/tangdao/plugins)
+- [介绍](https://maoyantech.github.io/tangdao/introduction/index)
+- [核心概念](https://maoyantech.github.io/core-concepts/index)
+- [插件列表](https://maoyantech.github.io/tangdao/plugins/index)
 - API 列表
   - [tangdao(opts)](https://maoyantech.github.io/tangdao/api-reference/tangdao(opts))
   - [useModel](https://maoyantech.github.io/tangdao/api-reference/use-model)
   - nextTick
   - [getApp](https://maoyantech.github.io/tangdao/api-reference/get-app)
-- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide)
+- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide/index)
 
 在下次 DOM 更新循环结束之后执行延迟回调。在派发同步 action 之后立即使用这个方法，可以获取更新后的 DOM以及最新 store.state。针对异步 action 的处理，我们帮你自动植入了 nextTick 功能。
 
