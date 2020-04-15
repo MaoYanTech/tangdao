@@ -5,7 +5,7 @@
 - 迁移指南
   - [从 dva 迁移](https://maoyantech.github.io/tangdao/migration-guide/migrating-from-dva)
   - 从原生 redux 迁移
-  - [迁移问题总结][https://maoyantech.github.io/tangdao/migration-guide/problem-summary]
+  - [迁移问题总结](https://maoyantech.github.io/tangdao/migration-guide/problem-summary)
 
 #### redux + redux-saga  项目接入指南
 
