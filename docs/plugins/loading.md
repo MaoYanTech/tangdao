@@ -72,7 +72,7 @@ function App(props) {
       <div>当前计数器为：{count}</div>
       <div>
       {
-        loading[actionType.asyncAdd] ? '计算中...' : ''
+        loading.effects[actionType.asyncAdd] ? '计算中...' : ''
       }
       </div>
       <button onClick={() => { autoDispatch.add(1); }}>increment</button>
