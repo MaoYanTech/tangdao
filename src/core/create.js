@@ -375,7 +375,8 @@ export function useModel(namespace) {
         ...model.initData,
         actionType: model.actionTypes,
         actionCreator: model.actionCreator,
-        autoDispatch: app.autoDispatch[namespace]
+        autoDispatch: app.autoDispatch[namespace],
+        dispatch: app.autoDispatch[namespace]
       }
     }
   } else {
