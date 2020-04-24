@@ -116,7 +116,7 @@ td.model({
 import { useModel } from '@maoyan/tangdao';
 
 function App(props) {
-  const { actionType, actionCreator, autoDispatch, selector } = useModel('count');
+  const { actionType, actionCreator, dispatch, selector } = useModel('count');
   
   return (
   	<div>

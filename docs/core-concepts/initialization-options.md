@@ -322,8 +322,8 @@ const td = tangdao();
 td.model(count);
 td.getStore();
 
-const { autoDispatch } = useModel('count');
-autoDispatch.asyncAdd(1).then(status => {
+const { dispatch } = useModel('count');
+dispatch.asyncAdd(1).then(status => {
   if (status) {
     console.log('异步加法成功');
   }

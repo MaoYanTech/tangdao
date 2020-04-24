@@ -3,6 +3,9 @@
 - [插件列表](https://maoyantech.github.io/tangdao/plugins/index)
 - API 列表
   - [tangdao(opts)](https://maoyantech.github.io/tangdao/api-reference/tangdao(opts))
+  - [dispatch](https://maoyantech.github.io/tangdao/api-reference/dispatch)
+  - [actionType](https://maoyantech.github.io/tangdao/api-reference/actionType)
+  - [actionCreator](https://maoyantech.github.io/tangdao/api-reference/actionCreator)
   - [useModel](https://maoyantech.github.io/tangdao/api-reference/use-model)
   - nextTick
   - [getApp](https://maoyantech.github.io/tangdao/api-reference/get-app)
@@ -52,16 +55,14 @@ const count = {
 // /pages/app.js
 
 import React, { Component } from 'react';
-import { connect, useModel, nextTick } from '@maoyan/tangdao';
+import { connect, dispatch, nextTick } from '@maoyan/tangdao';
 
 class App extends Component {
   constructor(props){
     super(props);
-    const { autoDispatch } = useModel('count');
-    this.autoDispatch = autoDispatch;
   }
   handleAdd = () => {
-    this.autoDispatch.add(1);
+    dispatch.count.add(1);
     nextTick(() => {
       const { count } = this.props;
       if (count > 10) {
@@ -73,7 +74,7 @@ class App extends Component {
   asyncAdd = () => {
      // 针对异步 ation, 传入回调函数即可使用 nextTick 功能
      // state: 全局 state, modelState: 当前 model 的 state
-     countModel.autoDispatch.asyncAdd(1, (state, modelState) => {
+     dispatch.count.asyncAdd(1, (state, modelState) => {
         const { count } = this.props;
         if (count > 10) {
           console.log('已经点击超过 10 次了哦～');

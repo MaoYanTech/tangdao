@@ -3,6 +3,9 @@
 - [插件列表](https://maoyantech.github.io/tangdao/plugins/index)
 - API 列表
   - tangdao(opts)
+  - [dispatch](https://maoyantech.github.io/tangdao/api-reference/dispatch)
+  - [actionType](https://maoyantech.github.io/tangdao/api-reference/actionType)
+  - [actionCreator](https://maoyantech.github.io/tangdao/api-reference/actionCreator)
   - [useModel](https://maoyantech.github.io/tangdao/api-reference/use-model)
   - [nextTick](https://maoyantech.github.io/tangdao/api-reference/next-tick)
   - [getApp](https://maoyantech.github.io/tangdao/api-reference/get-app)
