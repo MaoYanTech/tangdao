@@ -92,16 +92,15 @@ td.model(countModel);
 // /pages/app.js
 
 import React from 'react';
-import { connect, useModel } from '@maoyan/tangdao';
+import { connect, dispatch } from '@maoyan/tangdao';
 
 function App(props) {
   const { count } = props;
-  const countModel = useModel('count');
   return (
     <div>
       当前计数器为：{count}
-      <button onClick={() => { countModel.autoDispatch.add(1); }}>increment</button>
-      <button onClick={() => { countModel.autoDispatch.asyncAdd(1); }}>asyncAdd</button>
+      <button onClick={() => { dispatch.count.add(1); }}>increment</button>
+      <button onClick={() => { dispatch.count.asyncAdd(1); }}>asyncAdd</button>
     </div>
   )
 }
