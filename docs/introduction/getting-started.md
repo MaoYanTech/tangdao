@@ -1,5 +1,6 @@
 - 介绍
   - 快速开始
+  - [初始化顺序](https://maoyantech.github.io/tangdao/introduction/init-order)
   - [默认输出](https://maoyantech.github.io/tangdao/introduction/default-output)
   - [为什么选择唐刀](https://maoyantech.github.io/tangdao/introduction/why)
 - [核心概念](https://maoyantech.github.io/tangdao/core-concepts/index)
@@ -11,8 +12,6 @@
 
 唐刀是一款基于 redux + redux-saga 以 model 为核心的数据流管理工具，它将 store 和 saga 统一为 model 的概念，写在一个 js 文件中，以对象配置的概念维护 state、 reducers、effects 等。
 
-v1.0.1以下版本升级 v1.0.1 以上版本请看 [注意事项](hhttp://doc-movie.sankuai.com/product/tangdao/notice)
-
 另外唐刀将 redux 相关常用的库整合在一起方便取用，具体如下：
 
 - react-router-dom
@@ -21,33 +20,15 @@ v1.0.1以下版本升级 v1.0.1 以上版本请看 [注意事项](hhttp://doc-mo
 - redux-saga
 - isomorphic-fetch
 
-特点
-
-- 易学易用、api 简单
-- 样板文件单一
-- 易接入
-- 侵入性低
-
 ### 安装
 
-目前唐刀发布在 mnpm ，可以通过 npm、 yarn、 mnpm 获取。
-
 ```javascript
-// NPM 将 npm 仓库镜像设置为 registry "http://r.npm.sankuai.com"
-npm install --save @myfe/tangdao
-
-// yarn 将 yarn 仓库镜像设置为 registry "http://r.npm.sankuai.com"
-yarn add @myfe/tangdao
-
-// mnpm
-mnpm install --save @myfe/tangdao
+npm install --save @maoyan/tangdao
 ```
-
-目前暂不支持通过  script 标签获取。
 
 ### 简单实践
 
-**唐刀对于初始化的顺序有着严谨的顺序和规范，具体可看**[初始化顺序](http://doc-movie.sankuai.com/product/tangdao/init-order)
+**唐刀对于初始化的顺序有着严谨的顺序和规范，具体可看**[初始化顺序](https://maoyantech.github.io/tangdao/introduction/init-order)
 
 我们通过创建一个简单计数应用来了解唐刀的正确开箱姿势。
 
@@ -58,7 +39,7 @@ mnpm install --save @myfe/tangdao
 ```javascript
 // /index.js
 
-import tangdao from '@myfe/tangdao';
+import tangdao from '@maoyan/tangdao';
 
 // 创建应用实例
 const td = tangdao({});
@@ -101,7 +82,7 @@ export default count;
 ```javascript
 // /index.js
 
-import tangdao from '@myfe/tangdao';
+import tangdao from '@maoyan/tangdao';
 // 引入 count model
 import countModel from './model/count.js';
 
@@ -121,7 +102,7 @@ td.model(countModel);
 // /pages/app.js
 
 import React from 'react';
-import { connect, useModel } from '@myfe/tangdao';
+import { connect, useModel } from '@maoyan/tangdao';
 
 function App(props) {
   const { count } = props;
@@ -147,7 +128,7 @@ export default (history) => {
 ```javascript
 // /index.js
 
-import tangdao from '@myfe/tangdao';
+import tangdao from '@maoyan/tangdao';
 // 引入 count model
 import countModel from './model/count.js';
 
@@ -169,7 +150,7 @@ td.router(require('./pages/app.js').default);
 ```javascript
 // /index.js
 
-import tangdao from '@myfe/tangdao';
+import tangdao from '@maoyan/tangdao';
 // 引入 count model
 import countModel from './model/count.js';
 

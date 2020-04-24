@@ -1,10 +1,20 @@
+- 介绍
+  - [快速开始](https://maoyantech.github.io/tangdao/introduction/getting-started)
+  - 初始化顺序
+  - [默认输出](https://maoyantech.github.io/tangdao/introduction/default-output)
+  - [为什么选择唐刀](https://maoyantech.github.io/tangdao/introduction/why)
+- [核心概念](https://maoyantech.github.io/tangdao/core-concepts/index)
+- [插件列表](https://maoyantech.github.io/tangdao/plugins/index)
+- [API 列表](https://maoyantech.github.io/tangdao/api-reference/index)
+- [迁移指南](https://maoyantech.github.io/tangdao/migration-guide/index)
+
 唐刀为应用的初始化提供了一套严谨有序的初始化步骤和规范，请认真阅读并严格按照要求进行开发。
 
 ### 第一步：创建实例
 
 ```javascript
 // /index.js
-import tangdao from '@myfe/tangdao';
+import tangdao from '@maoyan/tangdao';
 
 // 创建应用实例
 const td = tangdao({});
@@ -16,7 +26,7 @@ const td = tangdao({});
 
 ```javascript
 // /index.js
-import tangdao, { loading } from '@myfe/tangdao';
+import tangdao, { loading } from '@maoyan/tangdao';
 
 // 第一步 创建应用实例
 const td = tangdao({});
@@ -31,7 +41,7 @@ td.use(loading);
 
 ```javascript
 // /index.js
-import tangdao, { loading } from '@myfe/tangdao';
+import tangdao, { loading } from '@maoyan/tangdao';
 import models from './models';
 
 // 第一步 创建应用实例
@@ -50,7 +60,7 @@ td.model(models);
 
 ```javascript
 // /index.js
-import tangdao, { loading } from '@myfe/tangdao';
+import tangdao, { loading } from '@maoyan/tangdao';
 import models from './models';
 
 // 第一步 创建应用实例
@@ -70,7 +80,7 @@ td.router(require('./router').default); // 请一定按照此方法引入组件�
 
 ```javascript
 // /index.js
-import tangdao, { loading } from '@myfe/tangdao';
+import tangdao, { loading } from '@maoyan/tangdao';
 import models from './models';
 
 // 第一步 创建应用实例
