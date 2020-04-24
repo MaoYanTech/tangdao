@@ -27,6 +27,15 @@ const tangdaoModel = {
   }
 };
 
+// 全局 model action 的自动派发
+export let dispatch;
+
+// 全局 model actionCreator 的获取
+export let actionCreator;
+
+// 全局 model actionType 的获取
+export let actionType;
+
 /**
  * 初始化 tangdao app ，初始化配置和返回相应的 api
  * @param {Object} config 用户传入的配置
@@ -41,7 +50,8 @@ export function create(options) {
     $options: options, // 配置信息
     $models: [], // 存放所有 model 的地方
     start: start, // 函数，通过调用 start 函数可以将组件挂载指定元素下
-    model: model, // 函数，通过调用 model 函数可以传入相关数据流配置
+    model: model, // 函数，通过调用 model 函数可以传入相关数据流配置并创建 redux store
+    batchModel: batchModel, // 函数，批量注册 model，只注册 model，不创建 redux store
     unmodel: unmodel, // 函数，用于卸载某个 model
     replaceModel: replaceModel, // 函数， 永远替换某个 model
     router: customRouter, // 函数，路由配置
@@ -55,7 +65,7 @@ export function create(options) {
     globalModels: {}, // 全局模块
     store: null // redux store
   }
-  app.model(tangdaoModel);
+  app.batchModel(tangdaoModel);
   // 挂载 effectThunk 插件
   options.effectThunk && app.use(effectThunk);
   app.use(effectNextTick);
@@ -83,7 +93,19 @@ export function create(options) {
       container = document.querySelector(el);
     }
     invariant(container || isHTMLElement(container), `[app.start] container should be HTMLElement`);
-    getStore();
+    // 兼容之前的旧版本
+    if (!app.store) {
+      console.warn(`
+        请按照 : \r\n 
+        1、const app = tangdao(); \r\n 
+        2、app.use(); \r\n 
+        3、app.model(); \r\n 
+        4、app.router(require("xxx"); \r\n 
+        5、app.start("el") \r\n 
+        顺序和规范执行唐刀的初始化, 否则将无法正常获取和使用 useModel、dispatch、actionType、actionCreator
+      `);
+      getStore();
+    }
     app.el = container;
     if (container) {
       render();
@@ -108,7 +130,14 @@ export function create(options) {
       throw new Error('在 app.start 之前执行 getStore 时，请确认传入有效 model 或者 extraReducers');
     }
     const store = createRedux(app);
-    app.autoDispatch = actionCreators(app.actionCreator, store.dispatch);
+    // 将 dispatch 挂载到全局
+    dispatch = actionCreators(app.actionCreator, store.dispatch);
+    // 将 actionType 挂载到全局
+    actionType = app.actionTypes;
+    // 将 actionCreator 挂载到全局
+    actionCreator = app.actionCreator;
+
+    app.autoDispatch = dispatch;
     app.store = store;
     // 处理 subscriptions
     app.$subscriptions = handleSubscriptions(app);
@@ -116,14 +145,39 @@ export function create(options) {
   }
 
   /**
-   * 在 start 执行前注册一个 model, 为其添加 ${namespace}/
+   * 在 start 执行前注册一个 model, 为其添加 ${namespace}/，只执行一次
    * @param {Object} model
    */
   function model(model) {
-    if (!isArray(model)) {
+    invariant(isArray(model), 'app.modle 仅支持数组批量传入, 请一次性传入所有 model');
+    // 只执行一次
+    if (app.store) {
+      return {};
+    }
+    // app.model 的执行必须是在 app.router 之前，确保 useModel、dispatch、actionType、actionCreator 的正常使用
+    if (app.$router) {
+      console.warn(`
+        请按照 : \r\n 
+        1、const app = tangdao(); \r\n 
+        2、app.use(); \r\n 
+        3、app.model(); \r\n 
+        4、app.router(require("xxx"); \r\n 
+        5、app.start("el") \r\n 
+        顺序和规范执行唐刀的初始化, 否则将无法正常获取和使用 useModel、dispatch、actionType、actionCreator
+      `);
+    }
+    const modelMap = batchModel(model);
+    getStore();
+    return modelMap;
+  }
+
+  /**
+   * 注册单个或者批量 model，只是注册 model 不会进行 store 的创建
+   */
+  function batchModel(model) {
+    if(!isArray(model)){
       model = [model];
     }
-
     const modelMap = {};
     const { updateState, stateToJS } = app.$options;
     model.forEach( item => {
@@ -150,7 +204,7 @@ export function create(options) {
       app.actionCreator[namespace] = namespaceModel.actionCreator;
       app.actionTypes[namespace] = namespaceModel.actionTypes;
       modelMap[namespace] = namespaceModel;
-    })
+    });
     return modelMap;
   }
 
@@ -233,6 +287,9 @@ export function create(options) {
     }, store.dispatch);
   }
 
+  /**
+   * 注册路由组件，必须是 require('xxxx').default 引入，否则无法正常使用 useModel、dispatch、actionCreator、actionType
+   */
   function customRouter(routerFn) {
     invariant(isFunction(routerFn), `[app.router] router should be function, but got ${typeof routerFn}`);
     app.$router = routerFn;
@@ -311,6 +368,9 @@ export function useModel(namespace) {
     if (!model) {
       console.warn(`不存在 namespace 为 ${namespace} 的 model`);
     } else {
+      if (!app.autoDispatch[namespace]) {
+        console.warn('useModel 无法找到 dispatch, 引入路由组件时请按照 app.router(require("xxxx").default) 规范引入');
+      }
       return {
         ...model.initData,
         actionType: model.actionTypes,

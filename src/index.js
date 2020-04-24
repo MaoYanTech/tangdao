@@ -1,5 +1,6 @@
 import { create } from './core/create';
 
+export { dispatch, actionCreator, actionType } from './core/create';
 export * from 'connected-react-router';
 export { loading } from './plugins/loading/loading';
 export fetch from 'isomorphic-fetch';

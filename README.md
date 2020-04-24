@@ -2,6 +2,8 @@
 
 唐刀是一款基于 redux + redux-saga 以 model 为核心的数据流管理工具，它将 store 和 saga 统一为 model 的概念，写在一个 js 文件中，以对象配置的概念维护 state、 reducers、effects 等。
 
+v1.0.1以下版本升级 v1.0.1 以上版本请看 [注意事项](hhttp://doc-movie.sankuai.com/product/tangdao/notice)
+
 另外唐刀将 redux 相关常用的库整合在一起方便取用，具体如下：
 
 - react-router-dom
@@ -10,13 +12,33 @@
 - redux-saga
 - isomorphic-fetch
 
+特点
+
+- 易学易用、api 简单
+- 样板文件单一
+- 易接入
+- 侵入性低
+
 ### 安装
 
+目前唐刀发布在 mnpm ，可以通过 npm、 yarn、 mnpm 获取。
+
 ```javascript
-npm install --save @maoyan/tangdao
+// NPM 将 npm 仓库镜像设置为 registry "http://r.npm.sankuai.com"
+npm install --save @myfe/tangdao
+
+// yarn 将 yarn 仓库镜像设置为 registry "http://r.npm.sankuai.com"
+yarn add @myfe/tangdao
+
+// mnpm
+mnpm install --save @myfe/tangdao
 ```
 
+目前暂不支持通过  script 标签获取。
+
 ### 简单实践
+
+**唐刀对于初始化的顺序有着严谨的顺序和规范，具体可看**[初始化顺序](http://doc-movie.sankuai.com/product/tangdao/init-order)
 
 我们通过创建一个简单计数应用来了解唐刀的正确开箱姿势。
 
@@ -27,7 +49,7 @@ npm install --save @maoyan/tangdao
 ```javascript
 // /index.js
 
-import tangdao from '@maoyan/tangdao';
+import tangdao from '@myfe/tangdao';
 
 // 创建应用实例
 const td = tangdao({});
@@ -70,7 +92,7 @@ export default count;
 ```javascript
 // /index.js
 
-import tangdao from '@maoyan/tangdao';
+import tangdao from '@myfe/tangdao';
 // 引入 count model
 import countModel from './model/count.js';
 
@@ -90,12 +112,11 @@ td.model(countModel);
 // /pages/app.js
 
 import React from 'react';
-import { connect, useModel } from '@maoyan/tangdao';
-
-const countModel = useModel('count');
+import { connect, useModel } from '@myfe/tangdao';
 
 function App(props) {
   const { count } = props;
+  const countModel = useModel('count');
   return (
     <div>
       当前计数器为：{count}
@@ -105,21 +126,21 @@ function App(props) {
   )
 }
 
-export default connect(state => ({
-  count: state.count
-}))(App);
+export default (history) => {
+  connect(state => ({
+    count: state.count
+  }))(App)
+};
 ```
 
-#### 第五步：获取 redux store
+#### 第五步：注册视图
 
 ```javascript
 // /index.js
 
-import tangdao from '@maoyan/tangdao';
+import tangdao from '@myfe/tangdao';
 // 引入 count model
 import countModel from './model/count.js';
-// 引入视图组件
-import App from './pages/app.js';
 
 // 创建应用实例
 const td = tangdao({});
@@ -127,21 +148,21 @@ const td = tangdao({});
 // 注册 model
 td.model(countModel);
 
-// 获取 redux store
-const store = td.getStore();
+// 注册视图
+td.router(require('./pages/app.js').default);
+
 ```
 
-#### 第六步：挂载组件
+#### 第六步：启动应用
+
+在这一步，唐刀将会依据创建实例的配置和注册的 model 创建 redux store 和 redux-saga，然后将视图挂载到目标 dom 节点上。
 
 ```javascript
 // /index.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import tangdao, { Provider } from '@maoyan/tangdao';
+
+import tangdao from '@myfe/tangdao';
 // 引入 count model
 import countModel from './model/count.js';
-// 引入视图组件
-import App from './pages/app.js';
 
 // 创建应用实例
 const td = tangdao({});
@@ -149,18 +170,10 @@ const td = tangdao({});
 // 注册 model
 td.model(countModel);
 
-// 获取 redux store
-const store = td.getStore();
+// 注册视图
+td.router(require('./pages/app.js').default);
 
-// 挂载组件
-ReactDOM.render(
-  <Provider store={store}>
-  	<App />
-  </Provider>,
-  document.getElementById('app')
-);
+// 启动应用
+td.start('#app');
+
 ```
-
-### License
-
-[MIT](https://github.com/MaoYanTech/tangdao/blob/master/LICENSE)
