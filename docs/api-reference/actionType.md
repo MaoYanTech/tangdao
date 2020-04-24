@@ -11,7 +11,7 @@
   - [getApp](https://maoyantech.github.io/tangdao/api-reference/get-app)
 - [迁移指南](https://maoyantech.github.io/tangdao/migration-guide/index)
 
-通过 ``.`` 的获取具体 model 下的 actionType，具体如下：
+通过 ``.`` 的方式获取具体 model 下的 actionType，具体如下：
 
 **model**
 
