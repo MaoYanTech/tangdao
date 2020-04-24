@@ -1,5 +1,6 @@
 - 介绍
   - 快速开始
+  - [初始化顺序](https://maoyantech.github.io/tangdao/introduction/init-order)
   - [默认输出](https://maoyantech.github.io/tangdao/introduction/default-output)
   - [为什么选择唐刀](https://maoyantech.github.io/tangdao/introduction/why)
 - [核心概念](https://maoyantech.github.io/tangdao/core-concepts/index)
@@ -26,6 +27,8 @@ npm install --save @maoyan/tangdao
 ```
 
 ### 简单实践
+
+**唐刀对于初始化的顺序有着严谨的顺序和规范，具体可看**[初始化顺序](https://maoyantech.github.io/tangdao/introduction/init-order)
 
 我们通过创建一个简单计数应用来了解唐刀的正确开箱姿势。
 
@@ -101,10 +104,9 @@ td.model(countModel);
 import React from 'react';
 import { connect, useModel } from '@maoyan/tangdao';
 
-const countModel = useModel('count');
-
 function App(props) {
   const { count } = props;
+  const countModel = useModel('count');
   return (
     <div>
       当前计数器为：{count}
@@ -114,12 +116,14 @@ function App(props) {
   )
 }
 
-export default connect(state => ({
-  count: state.count
-}))(App);
+export default (history) => {
+  connect(state => ({
+    count: state.count
+  }))(App)
+};
 ```
 
-#### 第五步：获取 redux store
+#### 第五步：注册视图
 
 ```javascript
 // /index.js
@@ -127,8 +131,6 @@ export default connect(state => ({
 import tangdao from '@maoyan/tangdao';
 // 引入 count model
 import countModel from './model/count.js';
-// 引入视图组件
-import App from './pages/app.js';
 
 // 创建应用实例
 const td = tangdao({});
@@ -136,21 +138,21 @@ const td = tangdao({});
 // 注册 model
 td.model(countModel);
 
-// 获取 redux store
-const store = td.getStore();
+// 注册视图
+td.router(require('./pages/app.js').default);
+
 ```
 
-#### 第六步：挂载组件
+#### 第六步：启动应用
+
+在这一步，唐刀将会依据创建实例的配置和注册的 model 创建 redux store 和 redux-saga，然后将视图挂载到目标 dom 节点上。
 
 ```javascript
 // /index.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import tangdao, { Provider } from '@maoyan/tangdao';
+
+import tangdao from '@maoyan/tangdao';
 // 引入 count model
 import countModel from './model/count.js';
-// 引入视图组件
-import App from './pages/app.js';
 
 // 创建应用实例
 const td = tangdao({});
@@ -158,15 +160,10 @@ const td = tangdao({});
 // 注册 model
 td.model(countModel);
 
-// 获取 redux store
-const store = td.getStore();
+// 注册视图
+td.router(require('./pages/app.js').default);
 
-// 挂载组件
-ReactDOM.render(
-  <Provider store={store}>
-  	<App />
-  </Provider>,
-  document.getElementById('app')
-);
+// 启动应用
+td.start('#app');
+
 ```
-

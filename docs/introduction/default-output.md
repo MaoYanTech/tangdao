@@ -1,5 +1,6 @@
 - 介绍
   - [快速开始](https://maoyantech.github.io/tangdao/introduction/getting-started)
+  - [初始化顺序](https://maoyantech.github.io/tangdao/introduction/init-order)
   - 默认输出
   - [为什么选择唐刀](https://maoyantech.github.io/tangdao/introduction/why)
 - [核心概念](https://maoyantech.github.io/tangdao/core-concepts/index)
