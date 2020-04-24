@@ -127,7 +127,7 @@ actionCreator.add({
 
 ### dispatch
 
-派发 action, 只支持单参传递，参数会作为 payload 属性传递给 reducer 或 effect
+派发 action, 支持单参传递，参数会作为 payload 属性传递给 reducer 或 effect
 
 ```javascript
 dispatch.add(1)
@@ -140,15 +140,6 @@ dispatch({
 	type: 'count/add',
 	payload: 1
 })
-```
-
-**传递 payload 以外的参数，传入对象,参数中提供 payload 属性**
-
-```
-dispatch.add({
- meta: {},
- payload: 1
-});
 ```
 
 ### 额外属性
