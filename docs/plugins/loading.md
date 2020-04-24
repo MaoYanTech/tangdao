@@ -62,21 +62,20 @@ export default count;
 // /pages/app.js
 
 import React from 'react';
-import { connect, useModel } from '@maoyan/tangdao';
+import { connect, dispatch, actionType } from '@maoyan/tangdao';
 
 function App(props) {
   const { count, loading } = props;
-  const { autoDispatch, actionType } = useModel('count');
   return (
     <div>
       <div>当前计数器为：{count}</div>
       <div>
       {
-        loading.effects[actionType.asyncAdd] ? '计算中...' : ''
+        loading.effects[actionType.count.asyncAdd] ? '计算中...' : ''
       }
       </div>
-      <button onClick={() => { autoDispatch.add(1); }}>increment</button>
-      <button onClick={() => { autoDispatch.asyncAdd(1); }}>asyncAdd</button>
+      <button onClick={() => { dispatch.count.add(1); }}>increment</button>
+      <button onClick={() => { dispatch.count.asyncAdd(1); }}>asyncAdd</button>
     </div>
   )
 }

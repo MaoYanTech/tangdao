@@ -99,7 +99,7 @@ td.model([model])
 ```javascript
 import { useModel } from '@maoyan/tangdao';
 
-const { actionType, actionCreator, autoDispatch } = useModel('namespace');
+const { actionType, actionCreator, dispatch } = useModel('namespace');
 ```
 
 跨 model 访问，可以通过唐刀提供的 getApp 方法访问所有的 model。

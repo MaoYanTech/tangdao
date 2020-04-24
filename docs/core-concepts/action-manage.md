@@ -100,19 +100,19 @@ const actionCreator = (payload) => ({
 
 ---
 
-### autoDispatch
+### dispatch
 
-autoDispatch 可以自动派发一个 action，派发的 action 会被对应的 model 处理。在原生 redux 应用或者其他库中，我们需要手动的调用 dispatch 进行 action 的派发。这是一种很麻烦且不优雅的使用的方式。因此，唐刀为每一个 actionCreator 绑定了 dispatch，提供了 action 的自动派发。具体格式如下：
+dispatch 可以自动派发一个 action，派发的 action 会被对应的 model 处理。在原生 redux 应用或者其他库中，我们需要手动的调用 dispatch 进行 action 的派发。这是一种很麻烦且不优雅的使用的方式。因此，唐刀为每一个 actionCreator 绑定了 dispatch，提供了 action 的自动派发。具体格式如下：
 
 ```javascript
-const addAutoDispatch = payload => {
+const addDispatch = payload => {
 	dispatch(actionCreator.add(payload));
 }
 ```
 
 ---
 
-### 如何访问 actionType、actionCreator、autoDispatch
+### 如何访问 actionType、actionCreator、dispatch
 
 在 model 内，model.effects 是一个常访问 actionCreator 的地方，因此我们将该 model 下的 actionCreator 以参数的形式注入到 model.effects 中。
 
@@ -160,8 +160,8 @@ const actionCreator = {
   }),
 }
 
-// autoDispatch
-const autoDispatch = {
+// dispatch
+const dispatch = {
   add: payload => {
     dispatch(actionCreator.add(payload));
   },
@@ -179,7 +179,7 @@ import { connect, useModel } from '@maoyan/tangdao';
 
 function App(props) {
   const { count } = props;
-  const { actionCreator, actionType, autoDispatch } = useModel('count');
+  const { actionCreator, actionType, dispatch } = useModel('count');
   return (
     <div>
       当前计数器为：{count}

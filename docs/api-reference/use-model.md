@@ -3,6 +3,9 @@
 - [插件列表](https://maoyantech.github.io/tangdao/plugins/index)
 - API 列表
   - [tangdao(opts)](https://maoyantech.github.io/tangdao/api-reference/tangdao(opts))
+  - [dispatch](https://maoyantech.github.io/tangdao/api-reference/dispatch)
+  - [actionType](https://maoyantech.github.io/tangdao/api-reference/actionType)
+  - [actionCreator](https://maoyantech.github.io/tangdao/api-reference/actionCreator)
   - useModel
   - [nextTick](https://maoyantech.github.io/tangdao/api-reference/next-tick)
   - [getApp](https://maoyantech.github.io/tangdao/api-reference/get-app)
@@ -12,7 +15,7 @@
 
 ---
 
-根据 namespace 获取 model 下的 actionType、actionCreator、autoDispatch 及 model 初始化方法返回的值。
+根据 namespace 获取 model 下的 actionType、actionCreator、dispatch 及 model 初始化方法返回的值。
 
 **注：useModel 必须在 redux store 创建完毕后才可使用，即 ``app.getStore()`` 或者 ``app.start()`` 执行完毕**
 
@@ -43,11 +46,11 @@ import { connect, useModel } from '@maoyan/tangdao';
 
 function App(props) {
   const { count } = props;
-  const { autoDispatch } = useModel('count');
+  const { dispatch } = useModel('count');
   return (
   	<div>
     	<div>当前计数器为：{count}</div>
-			<button onClick={() => { autoDispatch.add(1); }}>increment</button>
+			<button onClick={() => { dispatch.add(1); }}>increment</button>
     </div>
   )
 }
@@ -122,12 +125,12 @@ actionCreator.add({
 });
 ```
 
-### autoDispatch
+### dispatch
 
-自动派发 action, 只支持单参传递，参数会作为 payload 属性传递给 reducer 或 effect
+派发 action, 只支持单参传递，参数会作为 payload 属性传递给 reducer 或 effect
 
 ```javascript
-autoDispatch.add(1)
+dispatch.add(1)
 ```
 
  等价于
@@ -142,7 +145,7 @@ dispatch({
 **传递 payload 以外的参数，传入对象,参数中提供 payload 属性**
 
 ```
-autoDispatch.add({
+dispatch.add({
  meta: {},
  payload: 1
 });
