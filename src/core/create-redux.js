@@ -97,7 +97,7 @@ export function createReducersAndSaga(models, options) {
   }
   // 得到最终的 reducer
   const finalReducer = storeOptions.initialReducer(options.history, combineReducers(reducers));
-  
+
   return {
     initState: initState,
     reducer: finalReducer,

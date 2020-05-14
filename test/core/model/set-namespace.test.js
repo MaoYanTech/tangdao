@@ -1,5 +1,5 @@
 import create from '../../../src/index'
-import { setNamespace } from '../../../src/core/model/setNamespace';
+import { setNamespace } from '../../../src/core/model/set-namespace';
 
 describe('setNamespace', () => {
   const app = create();

@@ -6,12 +6,12 @@ import { combineReducers } from 'redux';
 import { createHashHistory } from 'history';
 import { getObjLen } from '../utils';
 import { setNamespace, checkModel, registerReducer } from './model/index';
-import createRedux, { getReducer, createSaga } from './createRedux';
+import createRedux, { getReducer, createSaga } from './create-redux';
 import { isString, isHTMLElement, isFunction, isPlainObject, findIndex, isArray } from '../utils';
-import actionCreators from './actionCreators';
+import actionCreators from './action-creators';
 import { mergeOptions, initOptions, handleEffectHooksOptions, onError } from './options';
 import { handleSubscriptions, unlistenSubscription, runSubscription } from './subscriptions';
-import effectNextTick from './nextTick/effetctNextTick';
+import effectNextTick from './next-tick/effetct-next-tick';
 import effectThunk from '../plugins/effect-thunk';
 
 const $appGlobalName = Symbol.for(`$tangdao_app_${Date.now()}`); // create 创建 app 的全局变量
@@ -145,14 +145,26 @@ export function create(options) {
   }
 
   /**
-   * 在 start 执行前注册一个 model, 为其添加 ${namespace}/，只执行一次
+   * 在 start 执行前注册 model, 为其添加 ${namespace}/，会创建 redux store
    * @param {Object} model
    */
   function model(model) {
-    invariant(isArray(model), 'app.modle 仅支持数组批量传入, 请一次性传入所有 model');
-    // 只执行一次
+    if (!isArray(model)) {
+      model = [model];
+    }
+    // 如果是分批注册 model,那么后期注册的 model 进行注入
     if (app.store) {
-      return {};
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('model 方法最好一次注入所有的 model');
+      }
+      const modelMap = {};
+      model.forEach(item => {
+        const namespace = item.namespace;
+        const namespaceModel = batchModel(item);
+        modelMap[namespace] = namespaceModel;
+        injectModel(namespaceModel, namespace);
+      });
+      return modelMap;
     }
     // app.model 的执行必须是在 app.router 之前，确保 useModel、dispatch、actionType、actionCreator 的正常使用
     if (app.$router) {
@@ -175,7 +187,7 @@ export function create(options) {
    * 注册单个或者批量 model，只是注册 model 不会进行 store 的创建
    */
   function batchModel(model) {
-    if(!isArray(model)){
+    if (!isArray(model)) {
       model = [model];
     }
     const modelMap = {};
@@ -215,6 +227,13 @@ export function create(options) {
     const modelReducer = store.modelReducer;
 
     delete modelReducer[namespace];
+    delete app.actionCreator[namespace];
+    delete app.actionTypes[namespace];
+    delete app.autoDispatch[namespace];
+    delete dispatch[namespace];
+    delete actionType[namespace];
+    delete actionCreator[namespace];
+
     store.replaceReducer(combineReducers({
       ...modelReducer
     }));
@@ -266,25 +285,30 @@ export function create(options) {
   /**
    * 在 app 执行完 start 后，注入一个 model
    */
-  function injectModel(m) {
-    let injectModel = model(m);
+  function injectModel(m, namespace) {
     const store = app.store;
-    const namespace = m.namespace;
+    let injectModel = namespace === undefined ? batchModel(m) : m;
+    if (namespace === undefined) {
+      namespace = m.namespace;
+    }
     injectModel = injectModel[namespace];
     const injectReducer = getReducer(injectModel);
-    store.replaceReducer(combineReducers({
+    const modelReducer = {
       ...store.modelReducer,
       [namespace]: injectReducer
-    }));
+    }
+    store.modelReducer = modelReducer;
+    store.replaceReducer(combineReducers(modelReducer));
     if (injectModel.effects) {
       store.runSaga(createSaga(injectModel, app.$options));
     }
     if (injectModel.subscriptions) {
       app.$subscriptions[namespace] = runSubscription(injectModel.subscriptions, injectModel, app);
     }
-    app.autoDispatch = actionCreators({
+    const autoDispatch = actionCreators({
       [namespace]: app.actionCreator[namespace]
     }, store.dispatch);
+    app.autoDispatch[namespace] = autoDispatch[namespace];
   }
 
   /**
@@ -364,7 +388,7 @@ export function useModel(namespace) {
   }
   if (isString(namespace)) { // 获取单个 model 的 action
     const app = getApp();
-    const model = app.$models.find( model => model.namespace === namespace);
+    const model = app.$models.find( model => model.namespace === namespace );
     if (!model) {
       console.warn(`不存在 namespace 为 ${namespace} 的 model`);
     } else {
@@ -376,10 +400,11 @@ export function useModel(namespace) {
         actionType: model.actionTypes,
         actionCreator: model.actionCreator,
         autoDispatch: app.autoDispatch[namespace],
-        dispatch: app.autoDispatch[namespace]
+        dispatch: dispatch[namespace]
       }
     }
   } else {
     console.warn('只接受类型为 string 的空间命名');
   }
 }
+

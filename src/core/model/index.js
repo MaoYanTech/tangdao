@@ -1,3 +1,3 @@
-export * from './setNamespace';
-export * from './registerReducer';
-export * from './checkModel';
+export * from './set-namespace';
+export * from './register-reducer';
+export * from './check-model';

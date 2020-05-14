@@ -5,7 +5,7 @@ export * from 'connected-react-router';
 export { loading } from './plugins/loading/loading';
 export fetch from 'isomorphic-fetch';
 export * from 'react-router-dom';
-export { nextTick } from './core/nextTick/nextTick';
+export { nextTick } from './core/next-tick/next-tick';
 export { getApp, useModel } from './core/create';
 export * from 'react-redux';
 export * from 'redux-saga';

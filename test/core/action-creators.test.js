@@ -1,4 +1,4 @@
-import actionCreators from '../../src/core/actionCreators';
+import actionCreators from '../../src/core/action-creators';
 
 describe('actionCreators', () => {
   it('create actionCreators', () => {

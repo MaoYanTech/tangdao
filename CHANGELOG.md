@@ -4,6 +4,12 @@
 
 此项目所有的修改都会被记录在这个文件
 
+【1.1.0】 - 2020-05-13
+**Fixed**
+
+- 修复 model 方法不支持单个 model 注册，同时增加批次注入 model 功能
+- 修复 replaceModel 和 injectModel 执行后，dispatch 丢失问题
+
 #### 【1.0.6】 - 2020-04-24
 
 **Add**
