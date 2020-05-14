@@ -1,4 +1,4 @@
-import { checkModel } from '../../../src/core/model/checkModel';
+import { checkModel } from '../../../src/core/model/check-model';
 
 describe('checkModel', () => {
   it('[app.model]  should be plainObject', () => {

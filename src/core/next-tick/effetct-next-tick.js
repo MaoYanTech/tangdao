@@ -1,4 +1,4 @@
-import { nextTick } from './nextTick';
+import { nextTick } from './next-tick';
 import { isFunction } from '../../utils';
 
 const nextTickMap = Object.create({});
