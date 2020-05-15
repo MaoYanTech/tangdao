@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import invariant from 'invariant';
-import { combineReducers } from 'redux';
 import { createHashHistory } from 'history';
 import { getObjLen } from '../utils';
 import { setNamespace, checkModel, registerReducer } from './model/index';
-import createRedux, { getReducer, createSaga } from './create-redux';
+import createRedux, { createSaga, createReducer } from './create-redux';
 import { isString, isHTMLElement, isFunction, isPlainObject, findIndex, isArray } from '../utils';
 import actionCreators from './action-creators';
 import { mergeOptions, initOptions, handleEffectHooksOptions, onError } from './options';
@@ -233,10 +232,11 @@ export function create(options) {
     delete dispatch[namespace];
     delete actionType[namespace];
     delete actionCreator[namespace];
-
-    store.replaceReducer(combineReducers({
-      ...modelReducer
-    }));
+    app.$models = models.filter((model) => {
+      return model.namespace !== namespace;
+    })
+    const { reducer } = createReducer(app.$models, app.$options);
+    store.replaceReducer(reducer);
     store.dispatch({
       type: '@@tangdao/UPDATE'
     });
@@ -244,9 +244,6 @@ export function create(options) {
       type: `${namespace}/@@CANCEL_EFFECTS`
     });
     unlistenSubscription(app.$subscriptions, namespace);
-    app.$models = models.filter((model) => {
-      return model.namespace !== namespace;
-    })
   }
 
   /**
@@ -292,13 +289,8 @@ export function create(options) {
       namespace = m.namespace;
     }
     injectModel = injectModel[namespace];
-    const injectReducer = getReducer(injectModel);
-    const modelReducer = {
-      ...store.modelReducer,
-      [namespace]: injectReducer
-    }
-    store.modelReducer = modelReducer;
-    store.replaceReducer(combineReducers(modelReducer));
+    const { reducer } = createReducer(app.$models, app.$options);
+    store.replaceReducer(reducer);
     if (injectModel.effects) {
       store.runSaga(createSaga(injectModel, app.$options));
     }

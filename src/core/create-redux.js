@@ -60,10 +60,7 @@ export default function createRedux(app) {
  * @param {Object} initialReducer
  */
 export function createReducersAndSaga(models, options) {
-  const initState = {};
   let sagas = [];
-  const extraReducers = options.extraReducers;
-  const reducers = {};
 
   // 查看是否有额外的 saga 传入
   const extraSagasLen = options.extraSagas.length;
@@ -80,13 +77,40 @@ export function createReducersAndSaga(models, options) {
     if (isGlobalType(model)) {
       continue;
     }
+    if (model.effects) {
+      sagas.push(createSaga(model, options));
+    }
+  }
+
+  const { reducer, initState, modelReducer } = createReducer(models, options);
+
+  return {
+    initState: initState,
+    reducer: reducer,
+    modelReducer,
+    sagas: sagas
+  }
+}
+
+/**
+ * 创建 reducer
+ * @param {Object} models
+ * @param {Object} initialReducer
+ */
+export function createReducer(models, options) {
+  const initState = {};
+  const extraReducers = options.extraReducers;
+  const reducers = {};
+
+  // 对每一个 model 进行遍历处理
+  for (const model of models) {
+    if (isGlobalType(model)) {
+      continue;
+    }
     const namespace = model.namespace;
     if (model.reducers) {
       initState[namespace] = model.state;
       reducers[namespace] = getReducer(model);
-    }
-    if (model.effects) {
-      sagas.push(createSaga(model, options));
     }
   }
   // 如果存在额外的 reducer 则需要将其添加进来
@@ -96,14 +120,13 @@ export function createReducersAndSaga(models, options) {
     })
   }
   // 得到最终的 reducer
-  const finalReducer = storeOptions.initialReducer(options.history, combineReducers(reducers));
-
+  let finalReducer = storeOptions.initialReducer(options.history, combineReducers(reducers));
+  finalReducer = options.wrapReducer ? options.wrapReducer(finalReducer) : finalReducer;
   return {
-    initState: initState,
     reducer: finalReducer,
-    modelReducer: reducers,
-    sagas: sagas
-  }
+    initState: initState,
+    modelReducer: reducers
+  };
 }
 
 export function getReducer(model) {
@@ -235,7 +258,6 @@ function watchEffectFn(effect, actionType, options, model) {
 
 function createReduxStore({ reducers, initState, sagaMiddleware, options }) {
   const extraMiddleware = options.extraMiddleware || [];
-  // const middlewares = storeOptions.setupMiddlewares([sagaMiddleware, ...extraMiddleware], options.history);
   const middlewares = storeOptions.setupMiddlewares(extraMiddleware, sagaMiddleware, options.history);
   let composeEnhancers = compose;
   if (process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
@@ -243,7 +265,6 @@ function createReduxStore({ reducers, initState, sagaMiddleware, options }) {
   }
   const extraEnhancers = options.extraEnhancers ? options.extraEnhancers : [];
   const enhancers = [applyMiddleware(...middlewares), ...extraEnhancers];
-  reducers = options.wrapReducer ? options.wrapReducer(reducers) : reducers;
   return createStore(reducers, initState, composeEnhancers(...enhancers));
 }
 
